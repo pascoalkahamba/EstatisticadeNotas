@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #fff;
+    background-color: rgb(53, 53, 53);
+    font-family: sans-serif;
+    font-size: 1.2em;
+    background-image: url(img/4.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+footer {
+    text-align: center;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+.lista {
+    margin-left: 70px;
+    padding: 10px;
+}
+
+#form2 p {
+    width: 800px;
+    margin-top: 13px;
+    color: red;
+    padding: 3px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.473);
+    border: 3px solid red;
+}
+
+.problema span {
+    color: red;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.sidebar {
+    padding: 16px;
+    /* height: 10%; */
+}
+
+p {
+    padding: 20px;
+}
+
+
+/* .resolvendo {
+    background-color: rgb(59, 138, 211);
+    margin-top: 10px;
+    padding: 20px;
+} */
+
+label {
+    color: rgb(129, 63, 19);
+    font-weight: bold;
+}
+
+input[type='text'],
+[type='number'] {
+    width: 200px;
+    padding: 6px;
+    background-color: rgba(0, 0, 0, 0.247);
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 1.1em;
+    border-radius: 10px;
+}
+
+#form2 label {
+    color: rgb(43, 127, 196);
+}
+
+input[type='text']::placeholder {
+    font-size: 17px;
+    padding: 10px;
+    color: rgba(32, 20, 1, 0.644);
+    font-weight: bold;
+}
+
+input[type='number'] {
+    width: 90px;
+}
+
+input[type='button'] {
+    border: 2px rgb(0, 110, 255) solid;
+    background-color: rgba(43, 114, 180, 0.603);
+    color: rgb(0, 53, 102);
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    margin: 0 auto;
+    transition: .6s;
+}
+
+input[type='button']:hover {
+    background-color: rgba(59, 137, 211, 0.76);
+    color: #fff;
+    letter-spacing: 3px;
+}
+
+h1 {
+    background-color: rgba(62, 62, 253, 0.582);
+    padding-left: 10px;
+    text-align: center;
+}
+
+.estiloregisto {
+    border: 2px solid #fff;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.096);
+}
+
+.solucao {
+    visibility: hidden;
+    background-color: rgb(59, 138, 211);
+    margin-top: 2px;
+    padding: 20px;
+    transition: .6s;
+}
+
+form {
+    padding: 20px;
+}
+
+#disc-nome:focus {
+    background-color: rgba(0, 0, 0, 0.452);
+}
+
+#disc-nota:focus {
+    background-color: rgba(0, 0, 0, 0.452);
+}
+
+.solucao p {
+    line-height: 4px;
+}
+
+.butao {
+    padding: 20px;
+}
