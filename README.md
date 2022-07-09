@@ -1,4 +1,4 @@
-## Estatística de notas
+# Estatística de notas
 
 Este `projeto` foi desenvolvido com `Javascript` para fim de melhorar ainda mas as minhas habilidades em `Javascript`. O projeto começa com o `Problema` e logo em baixo aparece o botão `Usar o programa` então vai abrir uma outra página que é a `solução`.
 
