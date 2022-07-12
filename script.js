@@ -10,6 +10,7 @@ let nomeDisc = $('#disc-nome')
 let notaDisc = $('#disc-nota')
 let disciplinas = $('#txt-numero')
 let paragrafo = $('.paragrafo')
+let mostrarResultados = $('.resultadoAnalise')
     // const disciplina = {
     //     nome:,
     //     nota:
@@ -55,9 +56,38 @@ function ocultar(...elem) {
     elem.forEach(el => el.style.display = 'none')
 }
 
+function validarDisciplina(disc, elem) {
+    if (disc.indexOf(elem) == -1) {
+        return true
+    } else {
+        alert('Desculpe esta disciplina já foi adicionada!')
+        cont--
+        nomeDisc.value = ''
+        nomeDisc.focus()
+        return false
+    }
+}
+
+function ultimoRegisto() {
+    if (cont == +disciplinas.value) {
+        alert("Ultimo registo")
+        mostraDisciplina.innerHTML = "Resultados da Análise"
+        ocultar(formRegistar, butaoRegistar)
+        mostrarDados()
+    }
+}
+
+function mostrarDados() {
+    for (let conta = 1; conta <= disciplinas.value; conta++) {
+        mostrarResultados.innerHTML = `<span>${nomeDisciplina.join(' ')}</span> <span>${notaDisciplina.join(' ')}</span>`
+
+    }
+}
+
+
+
 function registar() {
     if (nomeDisc.value.length === 0 || notaDisc.value.length === 0 || +notaDisc.value < 0 || +notaDisc.value > 20) {
-        // alert('Dado invalido!')
         mostrar(paragrafo)
 
     } else {
@@ -65,18 +95,20 @@ function registar() {
         cont++
         if (cont <= +disciplinas.value) {
 
-            atualizarTituloDisciplina()
-            nomeDisciplina.push(nomeDisc.value)
-            notaDisciplina.push(+notaDisc.value)
-            nomeDisc.value = ''
-            nomeDisc.focus()
-            notaDisc.value = 0
-            if (cont == +disciplinas.value) console.log('Terminou!')
+            if (validarDisciplina(nomeDisciplina, nomeDisc.value)) {
+                atualizarTituloDisciplina()
+                nomeDisciplina.push(nomeDisc.value)
+                notaDisciplina.push(+notaDisc.value)
+                nomeDisc.value = ''
+                nomeDisc.focus()
+                notaDisc.value = 0
+            }
+            ultimoRegisto()
         }
     }
-    solucao.innerHTML = `Nomes ${ nomeDisciplina}<br><br>`
-    solucao.innerHTML += `Notas ${ notaDisciplina}`
-    solucao.style.visibility = "visible";
+    // solucao.innerHTML = `Nomes ${ nomeDisciplina}<br><br>`
+    // solucao.innerHTML += `Notas ${ notaDisciplina}`
+    // solucao.style.visibility = "visible";
 }
 butaoRegistar.addEventListener('click', registar)
 butao.addEventListener('click', iniciarAnalise)
