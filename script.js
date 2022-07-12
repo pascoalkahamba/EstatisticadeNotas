@@ -11,6 +11,7 @@ let notaDisc = $('#disc-nota')
 let disciplinas = $('#txt-numero')
 let paragrafo = $('.paragrafo')
 let mostrarResultados = $('.resultadoAnalise')
+let notaNegativa = $('.resultadoAnalise div')
     // const disciplina = {
     //     nome:,
     //     nota:
@@ -18,9 +19,10 @@ let mostrarResultados = $('.resultadoAnalise')
 let nomeDisciplina = []
 let notaDisciplina = []
 
+
+
 let cont = 0
-ocultar(formRegistar, butaoRegistar)
-ocultar(paragrafo)
+ocultar(formRegistar, butaoRegistar, solucao, paragrafo)
 
 function iniciarAnalise() {
     if (validarNumDisciplinas()) {
@@ -68,20 +70,35 @@ function validarDisciplina(disc, elem) {
     }
 }
 
+function notaBaixa(array) {
+    if (array < 10)
+        return true
+    else
+        return false
+}
+
 function ultimoRegisto() {
     if (cont == +disciplinas.value) {
         alert("Ultimo registo")
+        mostrar(solucao)
+        mostraDisciplina.style.marginTop = '-10px'
         mostraDisciplina.innerHTML = "Resultados da Análise"
         ocultar(formRegistar, butaoRegistar)
         mostrarDados()
+
     }
 }
 
 function mostrarDados() {
+    let cont = 0
     for (let conta = 1; conta <= disciplinas.value; conta++) {
-        mostrarResultados.innerHTML = `<span>${nomeDisciplina.join(' ')}</span> <span>${notaDisciplina.join(' ')}</span>`
+        mostrarResultados.innerHTML += `<div><span>${nomeDisciplina[cont]}:</span><span>${notaDisciplina[cont]}V</span></div>`
+        if (notaBaixa(+notaDisciplina[cont])) notaNegativa.setAttribute('class', 'notaBaixa')
+        cont++
 
     }
+
+
 }
 
 
@@ -99,6 +116,7 @@ function registar() {
                 atualizarTituloDisciplina()
                 nomeDisciplina.push(nomeDisc.value)
                 notaDisciplina.push(+notaDisc.value)
+                notaBaixa(+notaDisciplina)
                 nomeDisc.value = ''
                 nomeDisc.focus()
                 notaDisc.value = 0
@@ -106,9 +124,9 @@ function registar() {
             ultimoRegisto()
         }
     }
-    // solucao.innerHTML = `Nomes ${ nomeDisciplina}<br><br>`
-    // solucao.innerHTML += `Notas ${ notaDisciplina}`
-    // solucao.style.visibility = "visible";
+
+
 }
+
 butaoRegistar.addEventListener('click', registar)
 butao.addEventListener('click', iniciarAnalise)

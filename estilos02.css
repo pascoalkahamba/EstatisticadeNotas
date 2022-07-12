@@ -35,13 +35,31 @@ footer {
     border: 3px solid red;
 }
 
-.resultadoAnalise span {
+.resultadoAnalise div {
     display: flex;
     justify-content: space-between;
     gap: 10px;
     margin-top: 5px;
     padding: 10px;
-    border: 2px blue solid;
+    /* border: 2px blue solid; */
+    box-shadow: green 5px 5px 6px;
+}
+
+.resultadoAnalise div span {
+    padding: 6px;
+    color: rgb(184, 183, 183);
+    font-weight: bold;
+}
+
+.resultadoAnalise div span:nth-child(2) {
+    color: green;
+    padding-right: 110px;
+    font-size: 1.6em;
+}
+
+.notaBaixa {
+    color: red !important;
+    box-shadow: red 5px 5px 6px !important;
 }
 
 .problema span {
@@ -123,14 +141,16 @@ h1 {
 }
 
 .estiloregisto {
-    border: 2px solid #fff;
+    /* border: 2px solid #fff; */
+    box-shadow: 5px 5px 10px #000;
     padding: 16px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.096);
 }
 
 .solucao {
-    visibility: hidden;
+    /* visibility: hidden; */
+    display: block;
     background-color: rgb(59, 138, 211);
     margin-top: 2px;
     padding: 20px;
