@@ -7,17 +7,17 @@ body {
     color: #fff;
     background-color: rgb(53, 53, 53);
     font-family: sans-serif;
-    font-size: 1.2em;
     background-image: url(img/4.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    height: 100vh;
+    padding: 10px;
+    font-size: 1.2em;
+    height: 100vh !important;
 }
 
-footer {
+footer p {
     text-align: center;
     font-style: italic;
-    margin-top: 20px;
 }
 
 .lista {
@@ -41,7 +41,6 @@ footer {
     gap: 10px;
     margin-top: 5px;
     padding: 10px;
-    /* border: 2px blue solid; */
     box-shadow: green 5px 5px 6px;
 }
 
@@ -58,19 +57,14 @@ footer {
 }
 
 .notaBaixa {
-    color: red !important;
-    box-shadow: red 5px 5px 6px !important;
+    color: red;
+    box-shadow: red 5px 5px 6px;
 }
 
 .problema span {
     color: red;
     font-weight: bold;
     font-size: 1.2em;
-}
-
-.sidebar {
-    padding: 16px;
-    /* height: 10%; */
 }
 
 p {
@@ -151,7 +145,6 @@ h1 {
 .solucao {
     /* visibility: hidden; */
     display: block;
-    background-color: rgb(59, 138, 211);
     margin-top: 2px;
     padding: 20px;
     transition: .6s;
@@ -159,6 +152,27 @@ h1 {
 
 form {
     padding: 20px;
+}
+
+table {
+    margin-top: 20px;
+}
+
+table,
+th,
+td {
+    border: 2px solid #fff;
+    border-collapse: collapse;
+}
+
+th {
+    color: rgb(245, 245, 94);
+    background-color: rgba(0, 0, 0, 0.425);
+    padding: 5px;
+}
+
+td {
+    padding: 3px;
 }
 
 #disc-nome:focus {

@@ -10,46 +10,41 @@
 </head>
 
 <body>
-    <main class="sidebar">
-        <div class="problema">
-            <h1>Estatisticas de Notas</h1>
-            <form class="form1">
-                <label for="txt-none">Seu nome: </label>
-                <input type="text" name="txt-nome" id="txt-nome" placeholder="Campo não obrigatório" /><br /><br />
-                <label for="txt-numero">Número de Disciplinas: </label>
-                <input type="number" name="txt-numero" id="txt-numero" />
-            </form>
-            <form id="form2">
-                <label for="txt-none">Nome da disciplina: </label>
-                <input type="text" name="txt-nome" id="disc-nome" /><br /><br />
-                <label for="txt-numero">Nota da Disciplina: </label>
-                <input type="number" name="txt-numero" id="disc-nota" />
-                <p class="paragrafo">
-                    O campo NOME DA DISCIPLINA não pode estar vazio, e a nota tem estar entre 0 e 20
-                </p>
-            </form>
-            <input type="button" value="Iniciar Analise" id="butao" />
-            <input type="button" value="Registar" id="butaoRegistar" />
-            <div class="resultadoAnalise"></div>
-        </div>
-        <div class="solucao">
-            <h1>Detalhes dos Dados</h1>
-            <table>
-                <td>
-                    <tr>
-                        Nota maxima
-                    </tr>
-                    <tr>
-                        Nota baixa
-                    </tr>
-                    <tr>
-                        Media
-                    </tr>
-                </td>
-            </table>
-        </div>
-    </main>
-    <footer>&copy;Exercicíos Pascoal Kahamba</footer>
+    <div class="problema">
+        <h1>Estatisticas de Notas</h1>
+        <form class="form1">
+            <label for="txt-none">Seu nome: </label>
+            <input type="text" name="txt-nome" id="txt-nome" placeholder="Campo não obrigatório" /><br /><br />
+            <label for="txt-numero">Número de Disciplinas: </label>
+            <input type="number" name="txt-numero" id="txt-numero" />
+        </form>
+        <form id="form2">
+            <label for="txt-none">Nome da disciplina: </label>
+            <input type="text" name="txt-nome" id="disc-nome" /><br /><br />
+            <label for="txt-numero">Nota da Disciplina: </label>
+            <input type="number" name="txt-numero" id="disc-nota" />
+            <p class="paragrafo">
+                O campo NOME DA DISCIPLINA não pode estar vazio, e a nota tem estar entre 0 e 20
+            </p>
+        </form>
+        <input type="button" value="Iniciar Analise" id="butao" />
+        <input type="button" value="Registar" id="butaoRegistar" />
+        <div class="resultadoAnalise"></div>
+    </div>
+    <div class="solucao">
+        <h1>Detalhes dos Dados</h1>
+        <table class="tabela">
+            <tr>
+                <th>Maior Nota</th>
+                <th>Menor Nota</th>
+                <th>Média das Notas</th>
+            </tr>
+        </table>
+    </div>
+
+    <footer>
+        <p>&copy;Exercicíos Pascoal Kahamba</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 

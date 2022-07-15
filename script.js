@@ -11,13 +11,14 @@ let notaDisc = $('#disc-nota')
 let disciplinas = $('#txt-numero')
 let paragrafo = $('.paragrafo')
 let mostrarResultados = $('.resultadoAnalise')
-let notaNegativa = $('.resultadoAnalise div')
-    // const disciplina = {
-    //     nome:,
-    //     nota:
-    // }
+
+// const disciplina = {
+//     nome:,
+//     nota:
+// }
 let nomeDisciplina = []
 let notaDisciplina = []
+let tabela = $('.tabela')
 
 
 
@@ -70,12 +71,55 @@ function validarDisciplina(disc, elem) {
     }
 }
 
-function notaBaixa(array) {
-    if (array < 10)
-        return true
-    else
-        return false
+
+function estiloNotaAbaixo() {
+    let notaNegativa = $('.resultadoAnalise div')
+    notaNegativa.setAttribute('class', 'notaBaixa')
+
+
 }
+
+function notasBaixas() {
+    notaDisciplina.filter(elem => {
+            if (elem < 10) {
+                return true
+            } else {
+                return false
+            }
+        })
+        // for (let cont in notaDisciplina) {
+        //     if (notaDisciplina[cont] < 10) return true
+        //     else
+        //         mostrarResultados.style.color = 'green'
+        //     mostrarResultados.style.boxShadow = 'green 5px 5px 6px'
+        //     false
+        // }
+
+}
+
+function maiorNota() {
+    notaAlta = notaDisciplina[0]
+        // let nomedisciplina = nomeDisciplina = [0]
+    let soma = 0
+    tamanhoArray = notaDisciplina.length
+    for (let cont in notaDisciplina) {
+        soma += +notaDisciplina[cont]
+        if (notaDisciplina[cont] > notaAlta) notaAlta = notaDisciplina[cont]
+    }
+    media = +(soma / tamanhoArray)
+
+}
+
+function menorNota() {
+    notaBaixa = notaDisciplina[0]
+    for (let cont in notaDisciplina) {
+        if (notaDisciplina[cont] < notaBaixa) notaBaixa = notaDisciplina[cont]
+    }
+
+}
+
+// notaBaixa(+notaDisciplina)
+
 
 function ultimoRegisto() {
     if (cont == +disciplinas.value) {
@@ -93,11 +137,16 @@ function mostrarDados() {
     let cont = 0
     for (let conta = 1; conta <= disciplinas.value; conta++) {
         mostrarResultados.innerHTML += `<div><span>${nomeDisciplina[cont]}:</span><span>${notaDisciplina[cont]}V</span></div>`
-        if (notaBaixa(+notaDisciplina[cont])) notaNegativa.setAttribute('class', 'notaBaixa')
         cont++
-
     }
-
+    if (notasBaixas()) {
+        estiloNotaAbaixo()
+    }
+    tabela.innerHTML += `<tr>
+        <td>${notaAlta}</td>
+        <td>${notaBaixa}</td>
+        <td>${media}</td>
+        </tr>`
 
 }
 
@@ -116,7 +165,9 @@ function registar() {
                 atualizarTituloDisciplina()
                 nomeDisciplina.push(nomeDisc.value)
                 notaDisciplina.push(+notaDisc.value)
-                notaBaixa(+notaDisciplina)
+                maiorNota()
+                menorNota()
+                    // notaBaixa(+notaDisciplina)
                 nomeDisc.value = ''
                 nomeDisc.focus()
                 notaDisc.value = 0
@@ -124,6 +175,7 @@ function registar() {
             ultimoRegisto()
         }
     }
+
 
 
 }
