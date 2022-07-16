@@ -11,19 +11,55 @@ let notaDisc = $('#disc-nota')
 let disciplinas = $('#txt-numero')
 let paragrafo = $('.paragrafo')
 let mostrarResultados = $('.resultadoAnalise')
-
-// const disciplina = {
-//     nome:,
-//     nota:
-// }
+let escolhaPesquisa = document.getElementsByName('txt-dados')
+let campoPesquisa = $('#nomeDisciplina')
 let nomeDisciplina = []
 let notaDisciplina = []
 let tabela = $('.tabela')
-
-
-
+let mostraDadosPesquisa = $('.buscaDados')
+let butaoPesquisaNomeDisc = $('#butaoPesquisa')
+let butaoPesquisaNotaDisc = $('#butaoPesquisaNota')
+let valorProcurado = $('#nomeDisciplina')
+let rodape = document.getElementsByTagName('footer')[0]
+let notaBaixa
+let melhorDisciplina
 let cont = 0
-ocultar(formRegistar, butaoRegistar, solucao, paragrafo)
+
+function escolhaBusca() {
+    escolhaPesquisa.forEach(elem => {
+        elem.onchange = function() {
+            if (escolhaPesquisa[1].checked) {
+                ocultar(butaoPesquisaNomeDisc)
+                mostrar(butaoPesquisaNotaDisc)
+                addAtributoButaoNota()
+            } else {
+                ocultar(butaoPesquisaNotaDisc)
+                margemButao()
+                mostrar(butaoPesquisaNomeDisc)
+                addAtributoButaoNome()
+            }
+        }
+    })
+}
+
+function addAtributoButaoNota() {
+    campoPesquisa.setAttribute('type', 'number')
+    campoPesquisa.setAttribute('value', '')
+    campoPesquisa.setAttribute('placeholder', 'Nota')
+}
+
+function addAtributoButaoNome() {
+    campoPesquisa.setAttribute('type', 'text')
+    campoPesquisa.setAttribute('placeholder', 'Nome da Disciplina')
+}
+
+function margemButao() {
+    butaoPesquisaNomeDisc.style.marginTop = '-38px'
+    butaoPesquisaNomeDisc.style.marginLeft = '225px'
+
+}
+
+ocultar(formRegistar, butaoRegistar, solucao, paragrafo, mostraDadosPesquisa, butaoPesquisaNotaDisc)
 
 function iniciarAnalise() {
     if (validarNumDisciplinas()) {
@@ -35,6 +71,41 @@ function iniciarAnalise() {
         atualizarTituloDisciplina()
 
     }
+}
+
+function buscaValoresArray(array, valor) {
+    if (array.indexOf(valor) != -1) {
+        array.forEach((elem, index) => {
+            if (escolhaPesquisa[0].checked) {
+                if (elem === valor) {
+                    mostraDadosPesquisa.innerHTML = ''
+                    mostraDadosPesquisa.innerHTML = '<h1>Resultado/s da Busca</h1>'
+                    mostraDadosPesquisa.innerHTML += `<p>Em ${elem} tiveste ${notaDisciplina[index]} valores</p>`
+                }
+            } else {
+                if (elem === valor) {
+                    mostraDadosPesquisa.innerHTML = ''
+                    mostraDadosPesquisa.innerHTML = '<h1>Resultado/s da Busca</h1>'
+                    mostraDadosPesquisa.innerHTML += `<p>Tiveste ${elem} valores em ${nomeDisciplina[index]}</p>`
+                }
+            }
+
+        })
+        mostrar(mostraDadosPesquisa)
+        return true
+    } else {
+        alert('Este valor não existe na sua Pauta!')
+        return false
+    }
+
+}
+
+function chamafuncaoNome() {
+    buscaValoresArray(nomeDisciplina, valorProcurado.value)
+}
+
+function chamafuncaoNota() {
+    buscaValoresArray(notaDisciplina, +valorProcurado.value)
 }
 
 function atualizarTituloDisciplina() {
@@ -79,47 +150,43 @@ function estiloNotaAbaixo() {
 
 }
 
-function notasBaixas() {
-    notaDisciplina.filter(elem => {
-            if (elem < 10) {
-                return true
-            } else {
-                return false
-            }
-        })
-        // for (let cont in notaDisciplina) {
-        //     if (notaDisciplina[cont] < 10) return true
-        //     else
-        //         mostrarResultados.style.color = 'green'
-        //     mostrarResultados.style.boxShadow = 'green 5px 5px 6px'
-        //     false
-        // }
+// function notasBaixas() {
+//     +notaDisciplina.forEach(array => {
+//         if (array < 10) {
+//             console.log('nota baixa')
+//             return true
+//         } else {
+//             return false
+//         }
+//     })
 
-}
+// }
 
 function maiorNota() {
     notaAlta = notaDisciplina[0]
-        // let nomedisciplina = nomeDisciplina = [0]
     let soma = 0
     tamanhoArray = notaDisciplina.length
-    for (let cont in notaDisciplina) {
-        soma += +notaDisciplina[cont]
-        if (notaDisciplina[cont] > notaAlta) notaAlta = notaDisciplina[cont]
-    }
+    notaDisciplina.forEach((elem, index) => {
+        soma += +elem
+        if (elem > notaAlta) {
+            notaAlta = elem
+            melhorDisciplina = nomeDisciplina[index]
+        }
+    })
     media = +(soma / tamanhoArray)
 
 }
 
 function menorNota() {
     notaBaixa = notaDisciplina[0]
-    for (let cont in notaDisciplina) {
-        if (notaDisciplina[cont] < notaBaixa) notaBaixa = notaDisciplina[cont]
-    }
+    notaDisciplina.forEach((elem, index) => {
+        if (elem < notaBaixa) {
+            notaBaixa = elem
+            pessimaDisciplina = nomeDisciplina[index]
+        }
+    })
 
 }
-
-// notaBaixa(+notaDisciplina)
-
 
 function ultimoRegisto() {
     if (cont == +disciplinas.value) {
@@ -139,18 +206,17 @@ function mostrarDados() {
         mostrarResultados.innerHTML += `<div><span>${nomeDisciplina[cont]}:</span><span>${notaDisciplina[cont]}V</span></div>`
         cont++
     }
-    if (notasBaixas()) {
-        estiloNotaAbaixo()
-    }
+    // if (notasBaixas()) {
+
     tabela.innerHTML += `<tr>
-        <td>${notaAlta}</td>
-        <td>${notaBaixa}</td>
+        <td>${notaAlta}<span> (${melhorDisciplina})</span></td>
+        <td>${notaBaixa}<span> (${pessimaDisciplina})</span></td>
         <td>${media}</td>
         </tr>`
-
+    escolhaBusca()
+    window.document.body.style.height = '100%'
+    rodape.style.marginTop = '20px'
 }
-
-
 
 function registar() {
     if (nomeDisc.value.length === 0 || notaDisc.value.length === 0 || +notaDisc.value < 0 || +notaDisc.value > 20) {
@@ -175,10 +241,9 @@ function registar() {
             ultimoRegisto()
         }
     }
-
-
-
 }
 
 butaoRegistar.addEventListener('click', registar)
 butao.addEventListener('click', iniciarAnalise)
+butaoPesquisaNomeDisc.addEventListener('click', chamafuncaoNome)
+butaoPesquisaNotaDisc.addEventListener('click', chamafuncaoNota)

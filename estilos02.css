@@ -12,12 +12,16 @@ body {
     background-repeat: no-repeat;
     padding: 10px;
     font-size: 1.2em;
-    height: 100vh !important;
+    height: 100vh;
 }
 
 footer p {
     text-align: center;
     font-style: italic;
+}
+
+footer {
+    margin-top: 160px;
 }
 
 .lista {
@@ -50,10 +54,71 @@ footer p {
     font-weight: bold;
 }
 
+#butaoPesquisa,
+#butaoPesquisaNota {
+    width: 140px;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.514);
+}
+
+#butaoPesquisaNota {
+    margin-top: -38px;
+    margin-left: 120px;
+}
+
+#butaoPesquisa:hover {
+    background-color: rgba(255, 255, 255, 0.452);
+}
+
 .resultadoAnalise div span:nth-child(2) {
     color: green;
     padding-right: 110px;
     font-size: 1.6em;
+}
+
+.pesquisaDados {
+    margin-top: 50px;
+}
+
+.pesquisaDados p {
+    color: rgb(207, 126, 21);
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.buscaDados {
+    border: 2px #fff solid;
+    margin-top: 50px;
+}
+
+.buscaDados p {
+    margin-top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.219);
+    background-color: rgba(22, 22, 22, 0.397);
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.pesquisaDados label {
+    color: rgb(255, 255, 255);
+    font-size: 1.2em;
+    padding-right: 20px;
+}
+
+#nomeDisciplina {
+    background-color: rgba(0, 0, 0, 0.507);
+    transition: .6s;
+}
+
+#nomeDisciplina:hover {
+    background: rgba(255, 255, 255, 0.404);
+}
+
+#nomeDisciplina::placeholder {
+    color: rgba(255, 255, 255, 0.521);
 }
 
 .notaBaixa {
@@ -70,13 +135,6 @@ footer p {
 p {
     padding: 20px;
 }
-
-
-/* .resolvendo {
-    background-color: rgb(59, 138, 211);
-    margin-top: 10px;
-    padding: 20px;
-} */
 
 label {
     color: rgb(129, 63, 19);
@@ -167,12 +225,13 @@ td {
 
 th {
     color: rgb(245, 245, 94);
-    background-color: rgba(0, 0, 0, 0.425);
+    background-color: rgba(0, 0, 0, 0.267);
     padding: 5px;
 }
 
 td {
     padding: 3px;
+    background-color: rgba(0, 0, 0, 0.26);
 }
 
 #disc-nome:focus {

@@ -40,6 +40,19 @@
                 <th>Média das Notas</th>
             </tr>
         </table>
+        <div class="pesquisaDados">
+            <p>Pesquisa por:</p>
+            <form>
+                <input type="radio" name="txt-dados" id="pesquisaDisciplina" checked="checked" />
+                <label for="pesquisaDisciplina">Disciplina</label>
+                <input type="radio" name="txt-dados" id="pesquisaNota" />
+                <label for="pesquisaNota">Nota</label><br /><br />
+                <input type="text" name="txt-disciplina" id="nomeDisciplina" placeholder="Nome da Disciplina" />
+                <input type="button" value="Pesquisar" id="butaoPesquisa" />
+                <input type="button" value="Pesquisar" id="butaoPesquisaNota" />
+            </form>
+        </div>
+        <div class="buscaDados"></div>
     </div>
 
     <footer>
