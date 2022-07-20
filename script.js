@@ -20,9 +20,11 @@ let mostraDadosPesquisa = $('.buscaDados')
 let butaoPesquisaNomeDisc = $('#butaoPesquisa')
 let butaoPesquisaNotaDisc = $('#butaoPesquisaNota')
 let valorProcurado = $('#nomeDisciplina')
+let notaNegativa = $('.resultadoAnalise div')
 let rodape = document.getElementsByTagName('footer')[0]
-let notaBaixa
+let pessimaDisciplina
 let melhorDisciplina
+let notaBaixa
 let cont = 0
 
 function escolhaBusca() {
@@ -86,18 +88,21 @@ function buscaValoresArray(array, valor) {
                 if (elem === valor) {
                     mostraDadosPesquisa.innerHTML = ''
                     mostraDadosPesquisa.innerHTML = '<h1>Resultado/s da Busca</h1>'
-                    mostraDadosPesquisa.innerHTML += `<p>Tiveste ${elem} valores em ${nomeDisciplina[index]}</p>`
                 }
             }
 
         })
         mostrar(mostraDadosPesquisa)
-        return true
     } else {
         alert('Este valor não existe na sua Pauta!')
-        return false
+
     }
 
+}
+
+function estilodoBodyEfooter() {
+    window.document.body.style.height = '100%'
+    rodape.style.marginTop = '20px'
 }
 
 function chamafuncaoNome() {
@@ -106,6 +111,11 @@ function chamafuncaoNome() {
 
 function chamafuncaoNota() {
     buscaValoresArray(notaDisciplina, +valorProcurado.value)
+    notaDisciplina.filter((item, index) => {
+        if (item == +valorProcurado.value) {
+            mostraDadosPesquisa.innerHTML += `<p>Tiveste ${item} valores em ${nomeDisciplina[index]}</p>`
+        }
+    })
 }
 
 function atualizarTituloDisciplina() {
@@ -143,48 +153,39 @@ function validarDisciplina(disc, elem) {
 }
 
 
-function estiloNotaAbaixo() {
-    let notaNegativa = $('.resultadoAnalise div')
-    notaNegativa.setAttribute('class', 'notaBaixa')
+// function estiloNotaAbaixo() {
+//     notaNegativa.setAttribute('class', 'notaBaixa')
+// }
 
+function notasBaixas() {
+    +notaDisciplina.forEach(array => {
+        if (array < 10) {
+            console.log('nota baixa')
+                // estiloNotaAbaixo()
+        } else {
+            return false
+        }
+    })
 
 }
 
-// function notasBaixas() {
-//     +notaDisciplina.forEach(array => {
-//         if (array < 10) {
-//             console.log('nota baixa')
-//             return true
-//         } else {
-//             return false
-//         }
-//     })
-
-// }
-
-function maiorNota() {
+function maiorNotaEmenorNota() {
     notaAlta = notaDisciplina[0]
+    notaBaixa = notaDisciplina[0]
     let soma = 0
-    tamanhoArray = notaDisciplina.length
+    let tamanhoArray = notaDisciplina.length
     notaDisciplina.forEach((elem, index) => {
         soma += +elem
         if (elem > notaAlta) {
             notaAlta = elem
             melhorDisciplina = nomeDisciplina[index]
         }
-    })
-    media = +(soma / tamanhoArray)
-
-}
-
-function menorNota() {
-    notaBaixa = notaDisciplina[0]
-    notaDisciplina.forEach((elem, index) => {
         if (elem < notaBaixa) {
             notaBaixa = elem
             pessimaDisciplina = nomeDisciplina[index]
         }
     })
+    media = +(soma / tamanhoArray)
 
 }
 
@@ -206,16 +207,15 @@ function mostrarDados() {
         mostrarResultados.innerHTML += `<div><span>${nomeDisciplina[cont]}:</span><span>${notaDisciplina[cont]}V</span></div>`
         cont++
     }
-    // if (notasBaixas()) {
-
-    tabela.innerHTML += `<tr>
-        <td>${notaAlta}<span> (${melhorDisciplina})</span></td>
-        <td>${notaBaixa}<span> (${pessimaDisciplina})</span></td>
-        <td>${media}</td>
+    notasBaixas()
+    tabela.innerHTML +=
+        `<tr>
+            <td>${notaAlta} (${melhorDisciplina})</td>
+            <td>${notaBaixa} (${pessimaDisciplina})</td>
+            <td>${media}</td>
         </tr>`
     escolhaBusca()
-    window.document.body.style.height = '100%'
-    rodape.style.marginTop = '20px'
+    estilodoBodyEfooter()
 }
 
 function registar() {
@@ -231,9 +231,8 @@ function registar() {
                 atualizarTituloDisciplina()
                 nomeDisciplina.push(nomeDisc.value)
                 notaDisciplina.push(+notaDisc.value)
-                maiorNota()
-                menorNota()
-                    // notaBaixa(+notaDisciplina)
+
+                maiorNotaEmenorNota()
                 nomeDisc.value = ''
                 nomeDisc.focus()
                 notaDisc.value = 0
