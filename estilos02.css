@@ -47,6 +47,7 @@ footer {
     padding: 10px;
     box-shadow: green 5px 5px 6px;
 }
+.resultadoAnalise .neg
 
 .resultadoAnalise div span {
     padding: 6px;
@@ -101,6 +102,9 @@ footer {
     font-size: 1.2em;
     text-align: center;
 }
+.buscaDados p + p{
+    margin-top: 3px;
+}
 
 .pesquisaDados label {
     color: rgb(255, 255, 255);
@@ -121,7 +125,7 @@ footer {
     color: rgba(255, 255, 255, 0.521);
 }
 
-.notaBaixa {
+.resultadoAnalise .notaBaixa {
     color: red;
     box-shadow: red 5px 5px 6px;
 }
@@ -235,7 +239,7 @@ td {
 }
 
 #disc-nome:focus {
-    background-color: rgba(0, 0, 0, 0.452);
+     background-color: rgba(0, 0, 0, 0.452);
 }
 
 #disc-nota:focus {
