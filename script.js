@@ -22,11 +22,10 @@ let butaoPesquisaNotaDisc = $("#butaoPesquisaNota");
 let valorProcurado = $("#nomeDisciplina");
 let notaNegativa = $(".resultadoAnalise div");
 let rodape = document.getElementsByTagName("footer")[0];
-let pessimaDisciplina;
-let melhorDisciplina;
+let pessimaDisciplina, melhorDisciplina;
 let notaBaixa;
 let cont = 0;
-let campoVermelho = $(".tabela td");
+let resulNotaAlta, resulNotaBaixa, resulMedia;
 
 function escolhaBusca() {
   escolhaPesquisa.forEach((elem) => {
@@ -120,6 +119,11 @@ function chamafuncaoNota() {
     }
   });
 }
+function resulPositivoouNegativo() {
+  resulNotaAlta = notaAlta < 10 ? "resulNegativo" : "resulPositivo";
+  resulNotaBaixa = notaBaixa < 10 ? "resulNegativo" : "resulPositivo";
+  resulMedia = media < 10 ? "resulNegativo" : "resulPositivo";
+}
 
 function atualizarTituloDisciplina() {
   mostraDisciplina.innerHTML = `Disciplina ${Math.min(
@@ -155,21 +159,6 @@ function validarDisciplina(disc, elem) {
     nomeDisc.focus();
     return false;
   }
-}
-
-// function estiloNotaAbaixo() {
-//     notaNegativa.setAttribute('class', 'notaBaixa')
-// }
-
-function notasBaixas() {
-  +notaDisciplina.forEach((array) => {
-    if (array < 10) {
-      console.log("nota baixa");
-      // estiloNotaAbaixo()
-    } else {
-      return false;
-    }
-  });
 }
 
 function maiorNotaEmenorNota() {
@@ -210,18 +199,19 @@ function ultimoRegisto() {
 function mostrarDados() {
   let cont = 0;
   for (let conta = 1; conta <= disciplinas.value; conta++) {
-    const ehNeg = notaDisciplina[cont] < 10 ? "notaBaixa" : "";
+    const ehNegativa = notaDisciplina[cont] < 10 ? "notaBaixa" : "";
 
-    mostrarResultados.innerHTML += `<div class='${ehNeg}' ><span>${nomeDisciplina[cont]}:</span><span>${notaDisciplina[cont]}V</span></div>`;
+    mostrarResultados.innerHTML += `<div class='${ehNegativa}' ><span>${nomeDisciplina[cont]}:</span><span>${notaDisciplina[cont]}V</span></div>`;
     cont++;
   }
-  notasBaixas();
-  // verificarNota()
+
+  resulPositivoouNegativo();
   tabela.innerHTML += `<tr>
-            <td>${notaAlta} (${melhorDisciplina})</td>
-            <td>${notaBaixa} (${pessimaDisciplina})</td>
-            <td>${media}</td>
+            <td class=${resulNotaAlta}>${notaAlta} (${melhorDisciplina})</td>
+            <td class=${resulNotaBaixa}>${notaBaixa} (${pessimaDisciplina})</td>
+            <td class=${resulMedia}>${media}</td>
         </tr>`;
+
   escolhaBusca();
   estilodoBodyEfooter();
 }
