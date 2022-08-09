@@ -4,6 +4,7 @@
 }
 
 body {
+  display: grid;
   color: #fff;
   background-color: rgb(53, 53, 53);
   font-family: sans-serif;

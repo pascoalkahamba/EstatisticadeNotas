@@ -179,11 +179,6 @@ function maiorNotaEmenorNota() {
   });
   media = +(soma / tamanhoArray);
 }
-function verificarNota() {
-  if (notaAlta < 10 || notaBaixa < 10 || media < 10) {
-    campoVermelho.style.backgroundColor = "red";
-  }
-}
 
 function ultimoRegisto() {
   if (cont == +disciplinas.value) {
