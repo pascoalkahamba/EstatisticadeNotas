@@ -23,7 +23,7 @@ let valorProcurado = $("#nomeDisciplina");
 let notaNegativa = $(".resultadoAnalise div");
 let rodape = document.getElementsByTagName("footer")[0];
 let pessimaDisciplina, melhorDisciplina;
-let notaBaixa;
+let notaBaixa, notaAlta;
 let cont = 0;
 let resulNotaAlta, resulNotaBaixa, resulMedia;
 
@@ -201,10 +201,12 @@ function mostrarDados() {
   }
 
   resulPositivoouNegativo();
+  console.log(melhorDisciplina);
+  console.log(pessimaDisciplina);
   tabela.innerHTML += `<tr>
             <td class=${resulNotaAlta}>${notaAlta} (${melhorDisciplina})</td>
             <td class=${resulNotaBaixa}>${notaBaixa} (${pessimaDisciplina})</td>
-            <td class=${resulMedia}>${media}</td>
+            <td class=${resulMedia}>${Math.floor(media)}</td>
         </tr>`;
 
   escolhaBusca();
